@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc ngủ ngon</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #222;
+    }
+    #center-btn {
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #ff69b4;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+    #center-btn:hover {
+      background: #ff1493;
+    }
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      color: #fff;
+      font-size: 2rem;
+      text-align: center;
+      display: none;
+      z-index: 2;
+    }
+    .heart {
+      position: absolute;
+      left: 50%;
+      font-size: 2rem;
+      color: #ff69b4;
+      animation: fly 2s linear forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes fly {
+      0% {
+        transform: translate(-50%, 0) scale(1);
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -200px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="center-btn">Nhấn vào đây</button>
+  <div id="message">Chúc ngủ ngon nhé 💖</div>
+  <script>
+    const btn = document.getElementById('center-btn');
+    const msg = document.getElementById('message');
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      msg.style.display = 'block';
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          createHeart();
+        }, i * 200);
+      }
+    });
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = (50 + Math.random()*20 - 10) + '%';
+      heart.style.fontSize = (1.5 + Math.random()) + 'rem';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
